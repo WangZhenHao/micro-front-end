@@ -1,6 +1,9 @@
 # 微前端工程配置示例
 
 
+
+![micro-front-end](https://github.com/WangZhenHao/micro-front-end/blob/master/image/img.jpg)
+
 ```
 // 安装所有工程依赖包
 npm run examples:install
