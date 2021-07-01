@@ -10,9 +10,10 @@ Vue.use(VueRouter);
 let instance = '', router
 
 function render(props = {}) {
-  const { container } = props;
+  const { container, store } = props;
   
   router = new VueRouter({
+      store,
       mode: "history",
       base: window.__POWERED_BY_QIANKUN__ ? '/vueApp2' : '/',
       routes,

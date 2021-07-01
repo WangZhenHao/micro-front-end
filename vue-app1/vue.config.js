@@ -1,4 +1,5 @@
 const { name } = require('./package');
+const path = require('path');
 
 module.exports = {
   lintOnSave: false,
@@ -13,6 +14,11 @@ module.exports = {
     },
   },
   configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      }
+    },
     output: {
         // 把子应用打包成 umd 库格式
         library: `${name}-[name]`,

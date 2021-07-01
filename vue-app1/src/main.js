@@ -3,7 +3,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueRouter from "vue-router";
 import routes from "./router";
-import store from "./store";
+import action from '@/share/action.js'
+// import store from "./store";
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
@@ -12,6 +13,8 @@ let instance = '', router
 function render(props = {}) {
   const { container } = props;
   
+  action.setActions(props);
+
   router = new VueRouter({
       mode: "history",
       base: window.__POWERED_BY_QIANKUN__ ? '/vueApp1' : '/',
@@ -20,7 +23,6 @@ function render(props = {}) {
   
   instance = new Vue({
     router,
-    store,
     render: (h) => h(App),
   }).$mount(container ? container.querySelector('#app') : "#app");
 }

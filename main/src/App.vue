@@ -1,37 +1,58 @@
 <template>
     <div>
-        <div class="wrap">
-            <div class="hello">
-                <h1>vue-app1工程</h1>
-                <a href="/vueApp1/about">About页面</a>
-                <br />
-                <a href="/vueApp1/home">home页面</a>
-            </div>
-            <div class="hello">
-                <h1>vue-app2工程</h1>
-                <a href="/vueApp2/about">About页面</a>
-                <br />
-                <a href="/vueApp2/home">home页面</a>
+        <div v-if="$route.name">
+            <router-view></router-view>
+        </div>
+        <div v-if="!$route.name">
+            <top-silder></top-silder>
+            <div class="flex-box">
+                <left-silder></left-silder>
+                <div id="microContainter"></div>
             </div>
         </div>
-
-        <div id="microContainter"></div>
+        <div @click="change">
+             {{ tabList }}
+        </div>
+       
     </div>
 </template>
 
 <script>
+import leftSilder from '@views/home/compoents/leftSilder.vue'
+import topSilder from '@views/home/compoents/topSilder.vue'
+import action from '@/share'
+
 export default {
     name: 'App',
-    components: {},
+    components: {
+        leftSilder,
+        topSilder
+    },
+    data() {
+        return {
+            tabList: []
+        }
+    },
+    mounted() {
+        action.onGlobalStateChange((state, prev) => {
+            debugger
+            this.tabList = state.tabList;
+        })
+    },
+    methods: {
+        change() {
+            // this.$store.commit('addTabList', { name: '1111' })
+            this.tabList.push({ name: 'xm' })
+            action.setGlobalState({
+                tabList: this.tabList
+            })
+        }
+    }
 };
 </script>
 
 <style>
-.wrap {
-  display: flex;
-}
-.hello {
-  margin-right: 40px;
-  border-right: 1px solid #eee;
+.flex-box {
+    display: flex;
 }
 </style>

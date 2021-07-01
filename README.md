@@ -17,3 +17,6 @@ http://locahost:7100  子应用
 http://locahost:7200  子应用
 
 ```
+
+乾坤文档：
+https://qiankun.umijs.org/zh/guide
